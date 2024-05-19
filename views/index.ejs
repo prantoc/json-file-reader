@@ -5,85 +5,63 @@
         <meta charset="UTF-8">
         <title>Json Editor</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
 
     <body>
         <div class="container mt-5">
-            <h1 class="text-center">Json Editor</h1>
-            <div class="row  d-flex justify-content-center align-items-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body ">
-                            <form action="/save" method="post" class="mb-3" id="json-form">
-                                <div id="category-fields" class="mb-3">
-                                    <div class="row mb-3 category-row">
-                                        <div class="col">
-                                            <label for="category-0" class="form-label">Category</label>
-                                            <div class="input-group">
-                                                <select class="form-select category-dropdown"
-                                                    name="categories[0][category]" id="category-0">
-                                                    <option value="" disabled selected>Select category</option>
-                                                    <% categories.forEach(category=> { %>
-                                                        <option value="<%= category %>">
-                                                            <%= category %>
-                                                        </option>
-                                                        <% }) %>
-                                                </select>
-                                                <button class="btn btn-outline-secondary add-category"
-                                                    type="button">+</button>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <label for="key-0" class="form-label">Key</label>
-                                            <div class="input-group">
-                                                <select class="form-select key-dropdown" name="categories[0][key]"
-                                                    id="key-0">
-                                                    <option value="" disabled selected>Select key</option>
-                                                </select>
-                                                <button class="btn btn-outline-secondary add-key"
-                                                    type="button">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="translations">
-                                    <% Object.keys(jsons).forEach(function(language) { %>
-                                        <div class="mb-3">
-                                            <label for="value-<%= language %>" class="form-label">
-                                                <%= language.charAt(0).toUpperCase() + language.slice(1) %>
-                                            </label>
-                                            <input type="text" class="form-control" id="value-<%= language %>"
-                                                name="<%= language %>">
-                                        </div>
+            <h1>Json Editor</h1>
+            <form action="/save" method="post" class="mb-3" id="json-form">
+                <div id="category-fields" class="mb-3">
+                    <div class="row mb-3 category-row">
+                        <div class="col">
+                            <label for="category-0" class="form-label">Category</label>
+                            <div class="input-group">
+                                <select class="form-select category-dropdown" name="categories[0][category]"
+                                    id="category-0">
+                                    <option value="" disabled selected>Select category</option>
+                                    <% categories.forEach(category=> { %>
+                                        <option value="<%= category %>">
+                                            <%= category %>
+                                        </option>
                                         <% }) %>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Save all</button>
-                            </form>
+                                </select>
+                                <button class="btn btn-outline-secondary add-category" type="button">+</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="key-0" class="form-label">Key</label>
+                            <div class="input-group">
+                                <select class="form-select key-dropdown" name="categories[0][key]" id="key-0">
+                                    <option value="" disabled selected>Select key</option>
+                                </select>
+                                <button class="btn btn-outline-secondary add-key" type="button">+</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <h2 style="margin-top: 20px;">Json Files Formate</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="code-editor">
-                        <div class="row">
-
-                            <% Object.keys(jsons).forEach(function(language) { %>
-                                <div class="col-md-6">
-                                    <h3>
-                                        <%= language.charAt(0).toUpperCase() + language.slice(1) %>
-                                    </h3>
-                                    <textarea class="form-control code-area"
-                                        readonly><%= JSON.stringify(jsons[language], null, 2) %></textarea>
-                                </div>
-                                <% }) %>
+                <div id="translations">
+                    <% Object.keys(jsons).forEach(function(language) { %>
+                        <div class="mb-3">
+                            <label for="value-<%= language %>" class="form-label">
+                                <%= language.charAt(0).toUpperCase() + language.slice(1) %>
+                            </label>
+                            <input type="text" class="form-control" id="value-<%= language %>" name="<%= language %>">
                         </div>
-                    </div>
+                        <% }) %>
                 </div>
+                <button type="submit" class="btn btn-primary">Save all</button>
+            </form>
+            <h2>Code Editor</h2>
+            <div class="code-editor">
+                <% Object.keys(jsons).forEach(function(language) { %>
+                    <h3>
+                        <%= language.charAt(0).toUpperCase() + language.slice(1) %>
+                    </h3>
+                    <textarea class="form-control code-area"
+                        readonly><%= JSON.stringify(jsons[language], null, 2) %></textarea>
+                    <% }) %>
             </div>
-
         </div>
         <input type="hidden" id="categories-data" value='<%= JSON.stringify(categories) %>'>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
