@@ -15,9 +15,9 @@
     "fromFolder": "från mappen"
   },
   "color": {
-    "red": "",
-    "green": "",
-    "grey": "Grå",
+    "red": "Red-600",
+    "green": "Green-600",
+    "grey": "Green-600",
     "orange": "Orange",
     "blue": "Blå",
     "black": "Svart",
@@ -226,8 +226,5 @@
     "updated": "Tidsstämpel för den senaste uppdateringen",
     "updatethis": "Uppdatera detta objekt",
     "weblayer": "Webplayout-kanal"
-  },
-  "color,color": {
-    "red,green": ""
   }
 }
