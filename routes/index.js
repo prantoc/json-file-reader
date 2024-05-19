@@ -3,45 +3,45 @@ const fs = require("fs");
 const path = require("path");
 const router = express.Router();
 
-const localesPath = path.join(__dirname, "../json-fiels");
+const jsonsPath = path.join(__dirname, "../json-fiels");
 
 // Function to read JSON files dynamically
-const loadLocales = () => {
+const loadJson = () => {
   const files = fs
-    .readdirSync(localesPath)
+    .readdirSync(jsonsPath)
     .filter((file) => file.endsWith(".json"));
   const languages = files.map((file) => path.basename(file, ".json"));
-  const locales = {};
+  const jsons = {};
 
   languages.forEach((lang) => {
-    const data = fs.readFileSync(path.join(localesPath, `${lang}.json`));
-    locales[lang] = JSON.parse(data);
+    const data = fs.readFileSync(path.join(jsonsPath, `${lang}.json`));
+    jsons[lang] = JSON.parse(data);
   });
 
-  return locales;
+  return jsons;
 };
 
 router.get("/", (req, res) => {
-  const locales = loadLocales();
+  const jsons = loadJson();
   const categories = new Set();
 
-  Object.values(locales).forEach((locale) => {
-    Object.keys(locale).forEach((category) => {
+  Object.values(jsons).forEach((json) => {
+    Object.keys(json).forEach((category) => {
       categories.add(category);
     });
   });
 
-  res.render("index", { locales, categories: Array.from(categories) });
+  res.render("index", { jsons, categories: Array.from(categories) });
 });
 
 router.get("/keys", (req, res) => {
   const { category } = req.query;
-  const locales = loadLocales();
+  const jsons = loadJson();
   const keys = new Set();
 
-  Object.values(locales).forEach((locale) => {
-    if (locale[category]) {
-      Object.keys(locale[category]).forEach((key) => {
+  Object.values(jsons).forEach((json) => {
+    if (json[category]) {
+      Object.keys(json[category]).forEach((key) => {
         keys.add(key);
       });
     }
@@ -55,7 +55,7 @@ router.post("/save", (req, res) => {
 
   categories.forEach(({ category, key }) => {
     Object.keys(values).forEach((language) => {
-      const filePath = path.join(localesPath, `${language}.json`);
+      const filePath = path.join(jsonsPath, `${language}.json`);
       const data = JSON.parse(fs.readFileSync(filePath));
 
       if (!data[category]) {

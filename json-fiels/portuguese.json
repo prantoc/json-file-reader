@@ -193,7 +193,7 @@
     "help": "Abrir ajuda acerca desta secção",
     "htmlfolder": "Endereço Absoluto para a pasta de modelos do CasparCG?",
     "item": "Faça duplo clique (ou Enter) para abrir / fechar o item no editor. Arraste para ordenar os itens.",
-    "lang": "Idioma da interface de utilizador (Pode criar novos arquivos de idioma conforme necessário para tal basta adicionar à pasta locales)",
+    "lang": "Idioma da interface de utilizador (Pode criar novos arquivos de idioma conforme necessário para tal basta adicionar à pasta jsons)",
     "logfolder": "Pasta para log files",
     "loglevel": "Qual o nível de registo usado? Padrão: informações. A maioria das informações de log: depuração.",
     "masterplay": "Iniciar / para o item selecionado (Espaço)",
