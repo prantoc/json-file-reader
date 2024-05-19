@@ -51,18 +51,20 @@ router.get("/keys", (req, res) => {
 });
 
 router.post("/save", (req, res) => {
-  const { category, key, ...values } = req.body;
+  const { categories, ...values } = req.body;
 
-  Object.keys(values).forEach((language) => {
-    const filePath = path.join(localesPath, `${language}.json`);
-    const data = JSON.parse(fs.readFileSync(filePath));
+  categories.forEach(({ category, key }) => {
+    Object.keys(values).forEach((language) => {
+      const filePath = path.join(localesPath, `${language}.json`);
+      const data = JSON.parse(fs.readFileSync(filePath));
 
-    if (!data[category]) {
-      data[category] = {};
-    }
-    data[category][key] = values[language];
+      if (!data[category]) {
+        data[category] = {};
+      }
+      data[category][key] = values[language];
 
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    });
   });
 
   res.redirect("/");

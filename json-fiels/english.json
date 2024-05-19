@@ -16,8 +16,8 @@
     "fromFolder": "from folder"
   },
   "color": {
-    "red": "Blue",
-    "green": "Green",
+    "red": "",
+    "green": "",
     "grey": "Gray",
     "orange": "Orange",
     "blue": "Blue",
@@ -231,5 +231,8 @@
     "updated": "Timestamp when template was last imported",
     "updatethis": "Update this item",
     "weblayer": "Webplayout layer"
+  },
+  "color,color": {
+    "red,green": ""
   }
 }

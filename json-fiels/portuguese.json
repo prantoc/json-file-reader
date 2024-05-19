@@ -16,8 +16,8 @@
     "fromFolder": "da pasta"
   },
   "color": {
-    "red": "Blue",
-    "green": "Verde",
+    "red": "",
+    "green": "",
     "grey": "Cinzento",
     "orange": "Laranja",
     "blue": "Azul",
@@ -227,5 +227,8 @@
     "updated": "Atualizar este item",
     "updatethis": "Timestamp when template was last imported",
     "weblayer": "Camada / Canal / Layer de webplayout"
+  },
+  "color,color": {
+    "red,green": ""
   }
 }

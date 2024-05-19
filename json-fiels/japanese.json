@@ -16,8 +16,8 @@
     "fromFolder": "from folder"
   },
   "color": {
-    "red": "Blue",
-    "green": "緑",
+    "red": "",
+    "green": "",
     "grey": "グレー",
     "orange": "オレンジ",
     "blue": "青",
@@ -231,5 +231,8 @@
     "updated": "最後にインポートされたテンプレートのタイムスタンプ",
     "updatethis": "このアイテムの保存",
     "weblayer": "Web 出力先 レイヤー"
+  },
+  "color,color": {
+    "red,green": ""
   }
 }
