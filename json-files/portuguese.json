@@ -1,7 +1,7 @@
 {
   "general": {
-    "hello": "Olá",
-    "slogan": "Controle e opere gráficos com CasparCG e aplicações de streaming.",
+    "hello": "Huuuulo",
+    "slogan": "Huuuulo",
     "folder": "Pasta",
     "file": "Ficheiro",
     "up": "Topo",
@@ -227,5 +227,11 @@
     "updated": "Atualizar este item",
     "updatethis": "Timestamp when template was last imported",
     "weblayer": "Camada / Canal / Layer de webplayout"
+  },
+  "newcat": {
+    "newcat": "Newcat"
+  },
+  "weekdays": {
+    "monday": "Monday"
   }
 }

@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const router = express.Router();
 
-const jsonsPath = path.join(__dirname, "../json-fiels");
+const jsonsPath = path.join(__dirname, "../json-files");
 
 // Function to read JSON files dynamically
 const loadJson = () => {
@@ -51,21 +51,39 @@ router.get("/keys", (req, res) => {
 });
 
 router.post("/save", (req, res) => {
-  const { categories, ...values } = req.body;
+  const { categories, newCategories, ...values } = req.body;
 
-  categories.forEach(({ category, key }) => {
-    Object.keys(values).forEach((language) => {
-      const filePath = path.join(jsonsPath, `${language}.json`);
-      const data = JSON.parse(fs.readFileSync(filePath));
+  if (categories) {
+    categories.forEach(({ category, key }) => {
+      Object.keys(values).forEach((language) => {
+        const filePath = path.join(jsonsPath, `${language}.json`);
+        const data = JSON.parse(fs.readFileSync(filePath));
 
-      if (!data[category]) {
-        data[category] = {};
-      }
-      data[category][key] = values[language];
+        if (!data[category]) {
+          data[category] = {};
+        }
+        data[category][key] = values[language];
 
-      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+      });
     });
-  });
+  }
+
+  if (newCategories) {
+    newCategories.forEach(({ category, key }) => {
+      Object.keys(values).forEach((language) => {
+        const filePath = path.join(jsonsPath, `${language}.json`);
+        const data = JSON.parse(fs.readFileSync(filePath));
+
+        if (!data[category]) {
+          data[category] = {};
+        }
+        data[category][key] = key.charAt(0).toUpperCase() + key.slice(1);
+
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+      });
+    });
+  }
 
   res.redirect("/");
 });

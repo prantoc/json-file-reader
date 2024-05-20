@@ -11,10 +11,10 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center">Json Editor</h1>
-            <div class="row  d-flex justify-content-center align-items-center">
+            <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-body ">
+                        <div class="card-body">
                             <form action="/save" method="post" class="mb-3" id="json-form">
                                 <div id="category-fields" class="mb-3">
                                     <div class="row mb-3 category-row">
@@ -47,8 +47,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- New Button to Add Category and Key Fields -->
+                                <div class="mb-3">
+                                    <button type="button" id="add-category-key" class="btn btn-secondary">Add Category &
+                                        Key</button>
+                                </div>
                                 <div id="translations">
-                                    <% Object.keys(jsons).forEach(function(language) { %>
+                                    <% Object.keys(jsons).forEach(function (language) { %>
                                         <div class="mb-3">
                                             <label for="value-<%= language %>" class="form-label">
                                                 <%= language.charAt(0).toUpperCase() + language.slice(1) %>
@@ -69,8 +74,7 @@
                 <div class="col-md-12">
                     <div class="code-editor">
                         <div class="row">
-
-                            <% Object.keys(jsons).forEach(function(language) { %>
+                            <% Object.keys(jsons).forEach(function (language) { %>
                                 <div class="col-md-6">
                                     <h3>
                                         <%= language.charAt(0).toUpperCase() + language.slice(1) %>
@@ -83,7 +87,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <input type="hidden" id="categories-data" value='<%= JSON.stringify(categories) %>'>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

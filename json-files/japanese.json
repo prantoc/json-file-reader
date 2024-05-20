@@ -1,7 +1,7 @@
 {
   "general": {
-    "hello": "ようこそ",
-    "slogan": "あらゆるライブ配信向けのCGグラフィクス管理を提供",
+    "hello": "Huuuulo",
+    "slogan": "Huuuulo",
     "folder": "フォルダー",
     "file": "ファイル",
     "up": "アップ",
@@ -231,5 +231,11 @@
     "updated": "最後にインポートされたテンプレートのタイムスタンプ",
     "updatethis": "このアイテムの保存",
     "weblayer": "Web 出力先 レイヤー"
+  },
+  "newcat": {
+    "newcat": "Newcat"
+  },
+  "weekdays": {
+    "monday": "Monday"
   }
 }

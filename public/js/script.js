@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
         addKeyField(event.target);
       }
     });
+
+  // Add event listener to the new button to add category and key fields
+  document
+    .getElementById("add-category-key")
+    .addEventListener("click", addCategoryKeyFields);
 });
 
 function updateKeys(event) {
@@ -41,26 +46,26 @@ function addCategoryField() {
   const newField = document.createElement("div");
   newField.classList.add("row", "mb-3", "category-row");
   newField.innerHTML = `
-    <div class="col">
-      <label for="category-${index}" class="form-label">Category</label>
-      <div class="input-group">
-        <select class="form-select category-dropdown" name="categories[${index}][category]" id="category-${index}">
-          <option value="" disabled selected>Select category</option>
-          ${getCategoriesOptions()}
-        </select>
-        <button class="btn btn-outline-secondary add-category" type="button">+</button>
-      </div>
-    </div>
-    <div class="col">
-      <label for="key-${index}" class="form-label">Key</label>
-      <div class="input-group">
-        <select class="form-select key-dropdown" name="categories[${index}][key]" id="key-${index}">
-          <option value="" disabled selected>Select key</option>
-        </select>
-        <button class="btn btn-outline-secondary add-key" type="button">+</button>
-      </div>
-    </div>
-  `;
+        <div class="col">
+            <label for="category-${index}" class="form-label">Category</label>
+            <div class="input-group">
+                <select class="form-select category-dropdown" name="categories[${index}][category]" id="category-${index}">
+                    <option value="" disabled selected>Select category</option>
+                    ${getCategoriesOptions()}
+                </select>
+                <button class="btn btn-outline-secondary add-category" type="button">+</button>
+            </div>
+        </div>
+        <div class="col">
+            <label for="key-${index}" class="form-label">Key</label>
+            <div class="input-group">
+                <select class="form-select key-dropdown" name="categories[${index}][key]" id="key-${index}">
+                    <option value="" disabled selected>Select key</option>
+                </select>
+                <button class="btn btn-outline-secondary add-key" type="button">+</button>
+            </div>
+        </div>
+    `;
   categoryFields.appendChild(newField);
 
   newField
@@ -75,11 +80,11 @@ function addKeyField(target) {
   const newField = document.createElement("div");
   newField.classList.add("input-group", "mt-2");
   newField.innerHTML = `
-    <select class="form-select key-dropdown" name="categories[${index}][key]">
-      <option value="" disabled selected>Select key</option>
-    </select>
-    <button class="btn btn-outline-secondary add-key" type="button">+</button>
-  `;
+        <select class="form-select key-dropdown" name="categories[${index}][key]">
+            <option value="" disabled selected>Select key</option>
+        </select>
+        <button class="btn btn-outline-secondary add-key" type="button">+</button>
+    `;
   keyDropdown.closest(".col").appendChild(newField);
 }
 
@@ -90,4 +95,22 @@ function getCategoriesOptions() {
   return categories
     .map((category) => `<option value="${category}">${category}</option>`)
     .join("");
+}
+
+function addCategoryKeyFields() {
+  const categoryFields = document.getElementById("category-fields");
+  const index = categoryFields.querySelectorAll(".category-row").length;
+  const newField = document.createElement("div");
+  newField.classList.add("row", "mb-3");
+  newField.innerHTML = `
+        <div class="col">
+            <label for="new-category-${index}" class="form-label">New Category</label>
+            <input type="text" class="form-control new-category" name="newCategories[${index}][category]" id="new-category-${index}">
+        </div>
+        <div class="col">
+            <label for="new-key-${index}" class="form-label">New Key</label>
+            <input type="text" class="form-control new-key" name="newCategories[${index}][key]" id="new-key-${index}">
+        </div>
+    `;
+  categoryFields.appendChild(newField);
 }

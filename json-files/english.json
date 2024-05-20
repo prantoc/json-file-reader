@@ -1,7 +1,7 @@
 {
   "general": {
-    "hello": "Howdy",
-    "slogan": "Manage and control graphics for live broadcast, live streaming and live events.",
+    "hello": "Huuuulo",
+    "slogan": "Huuuulo",
     "folder": "Folder",
     "file": "File",
     "up": "Up",
@@ -231,5 +231,11 @@
     "updated": "Timestamp when template was last imported",
     "updatethis": "Update this item",
     "weblayer": "Webplayout layer"
+  },
+  "newcat": {
+    "newcat": "Newcat"
+  },
+  "weekdays": {
+    "monday": "Monday"
   }
 }

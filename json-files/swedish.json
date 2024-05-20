@@ -1,7 +1,7 @@
 {
   "general": {
-    "hello": "Hejssan",
-    "slogan": "Hantera och kontrollera grafik för CasparCG eller streamingapplikationer.",
+    "hello": "",
+    "slogan": "",
     "folder": "Mapp",
     "file": "Fil",
     "up": "Upp",
@@ -226,5 +226,11 @@
     "updated": "Tidsstämpel för den senaste uppdateringen",
     "updatethis": "Uppdatera detta objekt",
     "weblayer": "Webplayout-kanal"
+  },
+  "newcat": {
+    "newcat": "Newcat"
+  },
+  "weekdays": {
+    "monday": "Monday"
   }
 }
