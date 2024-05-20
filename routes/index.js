@@ -5,7 +5,6 @@ const router = express.Router();
 
 const jsonsPath = path.join(__dirname, "../json-files");
 
-// Function to read JSON files dynamically
 const loadJson = () => {
   const files = fs
     .readdirSync(jsonsPath)
@@ -50,38 +49,50 @@ router.get("/keys", (req, res) => {
   res.json(Array.from(keys));
 });
 
+router.get("/values", (req, res) => {
+  const { category, key } = req.query;
+  const jsons = loadJson();
+  const values = {};
+
+  Object.keys(jsons).forEach((language) => {
+    if (jsons[language][category] && jsons[language][category][key]) {
+      values[language] = jsons[language][category][key];
+    } else {
+      values[language] = "";
+    }
+  });
+
+  res.json(values);
+});
+
 router.post("/save", (req, res) => {
   const { categories, newCategories, ...values } = req.body;
 
+  const updateJsonFiles = (category, key) => {
+    Object.keys(values).forEach((language) => {
+      const filePath = path.join(jsonsPath, `${language}.json`);
+      const data = JSON.parse(fs.readFileSync(filePath));
+
+      if (!data[category]) {
+        data[category] = {};
+      }
+      if (key) {
+        data[category][key] = values[language];
+      }
+
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    });
+  };
+
   if (categories) {
     categories.forEach(({ category, key }) => {
-      Object.keys(values).forEach((language) => {
-        const filePath = path.join(jsonsPath, `${language}.json`);
-        const data = JSON.parse(fs.readFileSync(filePath));
-
-        if (!data[category]) {
-          data[category] = {};
-        }
-        data[category][key] = values[language];
-
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-      });
+      updateJsonFiles(category, key);
     });
   }
 
   if (newCategories) {
     newCategories.forEach(({ category, key }) => {
-      Object.keys(values).forEach((language) => {
-        const filePath = path.join(jsonsPath, `${language}.json`);
-        const data = JSON.parse(fs.readFileSync(filePath));
-
-        if (!data[category]) {
-          data[category] = {};
-        }
-        data[category][key] = key.charAt(0).toUpperCase() + key.slice(1);
-
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-      });
+      updateJsonFiles(category, key);
     });
   }
 
